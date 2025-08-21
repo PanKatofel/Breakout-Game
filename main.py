@@ -35,7 +35,7 @@ def col_wall():
 
 
 def col_paddle():
-    if ball.distance(paddle) < 100 and ball.ycor() < paddle.ycor() + 20:
+    if abs(paddle.xcor() - ball.xcor()) <= (paddle.WIDTH + ball.RADIUS) / 2 and abs(paddle.ycor() - ball.ycor()) <= (paddle.HEIGHT + ball.RADIUS) / 2:
         offset = ball.xcor() - paddle.xcor()
         ball.paddle_bounce_off(offset)
 
