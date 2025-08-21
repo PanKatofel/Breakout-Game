@@ -2,6 +2,8 @@ from turtle import Screen
 from paddle import Paddle
 from ball import Ball
 from brick import Brick
+from text import Text
+from time import sleep
 
 # ----------------------------------------- SCREEN -----------------------------------------
 screen = Screen()
@@ -60,6 +62,10 @@ def col_brick():
             screen.ontimer(ball.reset_cooldown, 150)
             break
 
+def col_void():
+    if ball.ycor() <= -(screen.window_height() / 2):
+        return True
+
 
 def game_update():
     if paddle.right:
@@ -71,6 +77,16 @@ def game_update():
     col_paddle()
     col_brick()
     ball.move()
+
+    if col_void():
+        Text("Game Over")
+        screen.ontimer(screen.bye, 3000)
+        return
+
+    if len(bricks) <= 0:
+        Text("Game Won")
+        screen.ontimer(screen.bye, 3000)
+        return
 
     screen.update()
 
