@@ -48,9 +48,6 @@ def col_brick():
 
     for brick_obj in bricks[:]:
         if abs(brick_obj.xcor() - ball.xcor()) <= (brick_obj.WIDTH + ball.RADIUS) / 2 and abs(brick_obj.ycor() - ball.ycor()) <= (brick_obj.HEIGHT + ball.RADIUS) / 2:
-            print(abs(brick_obj.xcor() - ball.xcor()))
-            print()
-
             ball.brick_bounce_off(brick_obj)
             ball.hit_cooldown = True
             ball.speed_up()
